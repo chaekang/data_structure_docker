@@ -90,7 +90,17 @@ int main()
 
 void inOrderTraversal(BSTNode *root)
 {
-	 /* add your code here */
+	if (root != NULL)
+	{
+		return;
+	}
+	int result*[] = {NULL, };
+	Stack s;
+	s.top = NULL;
+
+	inOrderTraversal(root->left);
+	push(&s, root);
+	inOrderTraversal(root->right);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
