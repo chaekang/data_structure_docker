@@ -72,6 +72,7 @@ int main()
 		case 2:
 			printf("The resulting post-order traversal of the binary search tree is: ");
 			postOrderIterativeS1(root); // You need to code this function
+			removeAll(&root);
 			printf("\n");
 			break;
 		case 0:
@@ -91,7 +92,32 @@ int main()
 
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
+	Stack *s = malloc(sizeof(Stack));
+
+	BSTNode *cur = root;
+	BSTNode *prev;
+
+	while (!isEmpty(s) || cur != NULL)
+	{
+		while (cur != NULL)
+		{
+			push(s, cur);
+			cur = cur->left;
+		}
+		cur=peek(s);
+		if (cur->right != NULL && prev != cur->right)
+		{
+			cur=cur->right;
+		} 
+		else
+		{
+			printf("%d ", cur->item);
+			prev = pop(s);
+			cur = NULL;
+		}
+	}
+
+	free(s);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

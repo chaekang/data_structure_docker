@@ -72,6 +72,7 @@ int main()
 		case 2:
 			printf("The resulting pre-order traversal of the binary search tree is: ");
 			preOrderIterative(root); // You need to code this function
+			removeAll(&root);
 			printf("\n");
 			break;
 		case 0:
@@ -91,7 +92,32 @@ int main()
 
 void preOrderIterative(BSTNode *root)
 {
-	 /* add your code here */
+	Stack *s = malloc(sizeof(Stack));
+	s->top = NULL;
+
+	if (root != NULL)
+	{
+		push(s, root);
+	}
+
+	while (!isEmpty(s))
+	{
+		BSTNode *cur = pop(s);
+
+		printf("%d ", cur->item);
+
+		if (cur->right != NULL)
+		{
+			push(s, cur->right);
+		}
+
+		if (cur->left != NULL)
+		{
+			push(s, cur->left);
+		}
+	}
+
+	free(s);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
